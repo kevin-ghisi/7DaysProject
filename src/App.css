@@ -206,7 +206,8 @@ button {
   font-size: 16px;
 }
 
-.cards {
-  background-color: aqua;
-  height: 100px;
+.notesContainer {
+  background-color: #3a2b58;
+  color: white;
 }
+

@@ -3,6 +3,7 @@ import fire from "./components/Fire";
 import Login from "./components/Login";
 import Homepage from "./components/Homepage";
 import './App.css';
+import firebase from "firebase";
 
 function App() {
     const [user, setUser] = useState('');
@@ -11,16 +12,45 @@ function App() {
     const [emailError, setEmailError] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [hasAccount, setHasAccount] = useState(false);
+    const [ loading, setLoading ] = useState(true);
+    const [ todos, setTodos ] = useState([]);
+
+    // let data = firebase.firestore().collection('notes').get()
+    let db = firebase.firestore().collection('notes')
+
+    // const [setNotes] = set('');
+    // function listenForChange () {
+    //
+    //     db.get().then((querySnapshot) => {
+    //
+    //         querySnapshot.forEach(documentSnapshot => {
+    //             let note = {
+    //                 id: documentSnapshot.id,
+    //                 responsible: documentSnapshot.data().responsible,
+    //                 date: documentSnapshot.data().date,
+    //                 description: documentSnapshot.data().description,
+    //             }
+    //
+    //             let list = notes;
+    //             list.push(note);
+    //
+    //             console.log("Note:", note);
+    //             console.log("Note List:", list);
+    //         });
+    //
+    //     })
+    //
+    // }
 
     const clearInputs = () => {
         setEmail('');
         setPassword('');
-    }
+    };
 
     const clearErrors = () => {
         setEmailError('');
         setPasswordError('');
-    }
+    };
 
     const handleLogin = () => {
         clearErrors();
@@ -86,7 +116,27 @@ function App() {
 
     useEffect(() => {
         authListener();
-    }, []);
+
+        return db.onSnapshot(querySnapshot => {
+            const list = [];
+            querySnapshot.forEach(doc => {
+                const { responsible, date, description } = doc.data();
+                list.push({
+                    id: doc.id,
+                    responsible,
+                    date,
+                    description
+                });
+            });
+
+            setTodos(list);
+
+            if (loading) {
+                setLoading(false);
+            }
+        });
+        // listenForChange();
+    }, [])
 
     return (
         <div className="App">

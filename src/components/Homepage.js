@@ -1,6 +1,7 @@
 import React from "react";
-import NoteForm from "./NoteForm";
-import CardHolder from "./CardHolder";
+// import NoteForm from "./NoteForm";
+// import NotesList from "./NotesList";
+import Notes from "./Notes";
 
 const Homepage = ({handleLogout}) => {
     return (
@@ -10,9 +11,10 @@ const Homepage = ({handleLogout}) => {
                 <button onClick={handleLogout}>Logout</button>
             </nav>
 
-            <NoteForm />
+            {/*<NoteForm />*/}
 
-            <CardHolder />
+            {/*<NotesList />*/}
+            <Notes />
 
         </section>
     )
