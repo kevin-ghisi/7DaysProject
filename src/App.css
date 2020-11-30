@@ -122,14 +122,18 @@ button {
   background: #3a2b58;
 }
 
+ /*.hero .content {*/
+ /*  display: grid;*/
+ /*  grid-template: 20vh 70vh 10vh/3fr 1fr;*/
+ /*  grid-template-areas: "c l";*/
+ /*}*/
+
 .hero .cadContainer {
+  display: flex;
   padding: 60px;
-  margin: 15% auto;
-  /*margin-top: 15%;*/
-  width: 50%;
+  margin: 10%;
   max-width: 520px;
   min-height: 600px;
-  display: flex;
   flex-direction: column;
   justify-content: center;
   background: radial-gradient(
@@ -206,8 +210,7 @@ button {
   font-size: 16px;
 }
 
-.notesContainer {
-  background-color: #3a2b58;
-  color: white;
+.hero .grid {
+  min-height: 100%;
+  margin: 10% 10% 0 10%;
 }
-

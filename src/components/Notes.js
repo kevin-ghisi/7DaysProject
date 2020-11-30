@@ -19,13 +19,13 @@ function Notes() {
             date: date,
             description: description,
         });
-        setResponsible('');
-        setDate('');
-        setDescription('');
+        // setResponsible('');
+        // setDate('');
+        // setDescription('');
     }
 
     useEffect(() => {
-        return ref.onSnapshot(querySnapshot => {
+        return ref.orderBy('date', 'desc').onSnapshot(querySnapshot => {
             const list = [];
             querySnapshot.forEach(doc => {
                 const { responsible, date, description} = doc.data();
@@ -51,25 +51,27 @@ function Notes() {
 
     return (
         <section>
-            <div className="cadContainer">
-                <h2>New Note Register</h2>
+            <div className="content">
+                <div className="cadContainer">
+                    <h2>New Note Register</h2>
 
-                <label>Responsible</label>
-                <input type="text" autoFocus required value={responsible} onChange={(e) => setResponsible(e.target.value)}/>
+                    <label>Responsible</label>
+                    <input type="text" autoFocus required value={responsible} onChange={(e) => setResponsible(e.target.value)}/>
 
-                <label>Date</label>
-                <input type="date" required value={date} onChange={(e) => setDate(e.target.value)}/>
+                    <label>Date</label>
+                    <input type="date" required value={date} onChange={(e) => setDate(e.target.value)}/>
 
-                <label>Description</label>
-                <textarea value={description} onChange={(e) => setDescription(e.target.value)}/>
+                    <label>Description</label>
+                    <textarea value={description} onChange={(e) => setDescription(e.target.value)}/>
 
-                <div className="btnContainer">
-                    <button onClick={addNote}>Save</button>
+                    <div className="btnContainer">
+                        <button onClick={addNote}>Save</button>
+                    </div>
                 </div>
-            </div>
 
-            <div className="notesContainer">
-                <Note data={notes} />
+                <div className="grid">
+                    <Note data={notes} />
+                </div>
             </div>
         </section>
 )
