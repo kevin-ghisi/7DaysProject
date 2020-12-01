@@ -8,7 +8,11 @@ was my first one.
 
 Below are the link for the hosted version on Firestore Hosting:
 
-[Here](https://days-55d07.web.app/) is the deployed version. I hope you enjoy. 
+[Here](https://days-55d07.web.app/) is the deployed version. I hope you enjoy.
+
+##Login info
+Email: teste@gmail.com \
+Password: 123456
 
 ## Available Scripts
 
